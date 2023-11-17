@@ -128,7 +128,7 @@ public class MapController : MonoBehaviour
 
         if (optimizerCooldown <= 0f)
         {
-            optimizerCooldown = optimizerCooldownDur;   //Check every 1 second to save cost, change this value to lower to check more times
+            optimizerCooldown = optimizerCooldownDur;   //Check every 1 second to save cost
         }
         else
         {

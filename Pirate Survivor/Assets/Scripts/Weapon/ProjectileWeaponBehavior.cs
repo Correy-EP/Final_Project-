@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 // base script of all projectiles 
 public class ProjectileWeaponBehavior : MonoBehaviour
@@ -87,7 +86,7 @@ public class ProjectileWeaponBehavior : MonoBehaviour
 
 
         transform.localScale = scale;
-        transform.rotation = Quaternion.Euler(rotation);  // can't simply set the vector 
+        transform.rotation = Quaternion.Euler(rotation);  
     }
 
 

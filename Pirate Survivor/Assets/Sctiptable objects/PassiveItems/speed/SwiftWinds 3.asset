@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb442debeb70eb046aeaeb14ffef88f8, type: 3}
   m_Name: SwiftWinds 3
   m_EditorClassIdentifier: 
-  multipler: 100
+  multipler: 75
   level: 3
   nextLevelPrefab: {fileID: 0}
   name: Swift Winds Level 3
