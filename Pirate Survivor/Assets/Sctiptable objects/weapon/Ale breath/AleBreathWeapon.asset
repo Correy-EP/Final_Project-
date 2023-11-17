@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bbdd4e5c151b340baccf61b30507f3, type: 3}
+  m_Name: AleBreathWeapon
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6267579487919964825, guid: 0ebacf138a85d3e47855771e1e362b10, type: 3}
+  damage: 5
+  speed: 0
+  cooldownDuration: 3
+  pierce: 0
+  level: 1
+  nextLevelPrefab: {fileID: 1431022415491518886, guid: 712224e3c84d6f84ebd8cc0e46f1e51d, type: 3}
+  name: Ale Breath
+  description: Encapsulate your boat in a fowl boozy odor
+  icon: {fileID: 21300000, guid: 7cd31926365eea14988eb5f60f714db7, type: 3}

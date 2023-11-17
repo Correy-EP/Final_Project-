@@ -1,12 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 // base script of all projectiles 
 public class ProjectileWeaponBehavior : MonoBehaviour
 {
+    public WeaponScriptableObject weaponData;
 
     protected Vector3 direction;
     public float destroyAfterSeconds;
+
+    //current stats
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCoolDownDuration;
+    protected int currentPierce;
+
+
+
+    void Awake()
+    {
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        currentCoolDownDuration = weaponData.CoolDownDuration;
+        currentPierce = weaponData.Pierce;
+    }
+
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight; 
+    }
     // Start is called before the first frame update
    protected virtual void Start()
     {
@@ -65,6 +88,39 @@ public class ProjectileWeaponBehavior : MonoBehaviour
 
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);  // can't simply set the vector 
+    }
+
+
+
+    protected virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        
+        if(col.CompareTag("Enemy"))
+        {
+            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            enemy.TakeDamage(GetCurrentDamage());
+            ReducePierce();
+        }
+
+
+        else if (col.CompareTag("prop"))
+        {
+            if(col.gameObject.TryGetComponent(out BreakableProps breakable))
+            {
+                breakable.TakeDamage(GetCurrentDamage());
+                ReducePierce();
+            }
+        }
+    }
+
+
+    void ReducePierce()
+    {
+        currentPierce--; 
+        if(currentPierce <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

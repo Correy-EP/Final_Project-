@@ -15,9 +15,9 @@ public class cannonController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedCannon = Instantiate(prefab);
+        GameObject spawnedCannon = Instantiate(weaponData.Prefab);
         spawnedCannon.transform.position  = transform.position;  // assign the postion to be the same as this object which is parented to the player 
-        spawnedCannon.GetComponent<cannonBehavior>().DirectionChecker(ps.moveDir); //refrence the player direction
+        spawnedCannon.GetComponent<cannonBehavior>().DirectionChecker(ps.lastMovedVector); //refrence the player direction
     }
    
 }

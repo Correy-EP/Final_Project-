@@ -1,32 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PropRando : MonoBehaviour
 {
-
     public List<GameObject> propSpawnPoints;
-    public List<GameObject> propPrefab;
-    // Start is called before the first frame update
+    public List<GameObject> propPrefabs;
+
     void Start()
     {
-        spawnPoint();
+        SpawnProps();
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnProps()
     {
-        
-    }
+        List<GameObject> availableSpawnPoints = new List<GameObject>(propSpawnPoints);
 
-    void spawnPoint()
-    {
-        foreach(GameObject sp in propSpawnPoints)
+        foreach (GameObject prefab in propPrefabs)
         {
-            int rand = Random.Range(0,propPrefab.Count);
-            GameObject prop = Instantiate(propPrefab[rand], sp.transform.position,Quaternion.identity);
-            prop.transform.parent = sp.transform;
+            if (availableSpawnPoints.Count == 0) break;
+
+            int randIndex = Random.Range(0, availableSpawnPoints.Count);
+            GameObject spawnPoint = availableSpawnPoints[randIndex];
+            Instantiate(prefab, spawnPoint.transform.position, Quaternion.identity, spawnPoint.transform);
+
+            // Remove the used spawn point
+            availableSpawnPoints.RemoveAt(randIndex);
         }
     }
 }
+
